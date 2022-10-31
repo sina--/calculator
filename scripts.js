@@ -18,6 +18,7 @@ function operate(operator) {
 			break
 	}
 	console.log(result);
+	document.getElementById('display').textContent = result;
 }
 
 operate('add');
