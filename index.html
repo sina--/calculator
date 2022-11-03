@@ -4,12 +4,17 @@
 	<meta charset="UTF-8">
 	<title>Calculator</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/xicon" href="/images/favicon.png">
 </head>
 <body>
 	<div class="calculator">
-		<div class="display" id="display"></div>
-		<div>clear</div>
-		<div>delete</div>
+		<div class="display" id="display">
+			<div id="previousIn">_</div>
+			<div id="op">_</div>
+			<div id="lastIn">_</div>
+		</div>
+		<div class="keys" id="clear">c</div>
+		<div class="keys">d</div>
 		<div class="keypad" id="keypad">
 			<div class="keys" id="digit">7</div>
 			<div class="keys" id="digit">8</div>
