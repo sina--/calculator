@@ -1,41 +1,46 @@
 const numButtons = document.querySelectorAll('[id=digit]');
 const opButtons = document.querySelectorAll('[id=operator]');
-const allOp = ['+', '-', '*', '/'];
+const display = document.getElementById('display');
 
-let lastIn = '';
 let previousIn = '';
+let lastIn = '';
 let operator = '';
-let buffer = [];
+let result = '';
 
 numButtons.forEach(numButton => numButton.addEventListener('click', buildBuffer));
 opButtons.forEach(opButton => opButton.addEventListener('click', buildBuffer));
+document.getElementById('calc').addEventListener('click', buildBuffer);
 
 function buildBuffer() {
 	if(this.id === 'digit') {
 		lastIn += this.textContent;
-		console.log(lastIn);
+		display.textContent = lastIn;
 	} else if(this.id === 'operator') {
-		previousIn = lastIn;
+		previousIn = Number(lastIn);
 		lastIn = '';
-		console.log(previousIn);
-		console.log(this.id);
+		operator = this.textContent;
+		display.textContent = operator;
+	} else if(this.id === 'calc') {
+		lastIn = Number(lastIn);
+		operate(operator);
+		display.textContent = result;
 	}
 }
 
 function operate(operator) {
 	switch (operator) {
-		case 'add':
-			result = input1 + input2;
+		case '+':
+			result = previousIn + lastIn;
 			break;
-		case 'minus':
-			result = input1 - input2;
+		case '-':
+			result = previousIn - lastIn;
 			break;
-		case 'times':
-			result = input1 * input2;
+		case '*':
+			result = previousIn * lastIn;
 			break;
-		case 'divide':
-			result = (input1 / input2).toFixed(2);
+		case '/':
+			result = (previousIn / lastIn).toFixed(2);
 			break
 	}
-	document.getElementById('display').textContent = result;
+	return result;
 }
