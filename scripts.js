@@ -23,6 +23,8 @@ function buildBuffer() {
 	} else if(this.id === 'calc') {
 		lastIn = Number(lastIn);
 		operate(operator);
+		previousIn = lastIn;
+		lastIn = result;
 		display.textContent = result;
 	}
 }
