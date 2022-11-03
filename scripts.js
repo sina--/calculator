@@ -2,19 +2,24 @@ const numButtons = document.querySelectorAll('[id=digit]');
 const opButtons = document.querySelectorAll('[id=operator]');
 const allOp = ['+', '-', '*', '/'];
 
-numButtons.forEach(numButton => numButton.addEventListener('click', init));
-opButtons.forEach(opButton => opButton.addEventListener('click', getOp));
+let lastIn = '';
+let previousIn = '';
+let operator = '';
+let buffer = [];
 
-function init() {
-	let in1 = '';
-	in1 = this.textContent;
-	document.getElementById('display').textContent = in1;
-}
+numButtons.forEach(numButton => numButton.addEventListener('click', buildBuffer));
+opButtons.forEach(opButton => opButton.addEventListener('click', buildBuffer));
 
-function getOp() {
-	let in1 = '';
-	in1 = this.textContent;
-	console.log(in1);
+function buildBuffer() {
+	if(this.id === 'digit') {
+		lastIn += this.textContent;
+		console.log(lastIn);
+	} else if(this.id === 'operator') {
+		previousIn = lastIn;
+		lastIn = '';
+		console.log(previousIn);
+		console.log(this.id);
+	}
 }
 
 function operate(operator) {
