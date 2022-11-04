@@ -7,21 +7,23 @@
 	<link rel="icon" type="image/xicon" href="/images/favicon.png">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="calculator">
 		<div class="display" id="display">
 			<div id="displayExpression"></div>
 			<div class="activeDisplay">
-				<div id="displayPrevious" color="red"></div>
-				<div id="displayOperator" color="green"></div>
-				<div id="displayLast" color="blue"></div>
+				<div id="displayPrevious"></div>
+				<div id="displayOperator"></div>
+				<div id="displayLast"></div>
 			</div>
 		</div>
-		<div class="keys" id="clear">c</div>
-		<div class="keys">d</div>
 		<div class="keypad" id="keypad">
+			<div class="keys" id="operator">^</div>
+			<div class="keys" id="operator">%</div>
+			<div class="keys" id="clear">Clear</div>
+			<div class="keys">Delete</div>
 			<div class="keys" id="digit">7</div>
 			<div class="keys" id="digit">8</div>
 			<div class="keys" id="digit">9</div>
@@ -33,11 +35,11 @@
 			<div class="keys" id="digit">1</div>
 			<div class="keys" id="digit">2</div>
 			<div class="keys" id="digit">3</div>
-			<div class="keys" id="operator">*</div>
+			<div class="keys" id="operator">x</div>
 			<div class="keys" id="digit">0</div>
 			<div class="keys" id="digit">.</div>
 			<div class="keys" id="calc">=</div>
-			<div class="keys" id="operator">/</div>
+			<div class="keys" id="operator">÷</div>
 		</div>
 	</div>
 	<script src="scripts.js"></script>

@@ -26,8 +26,7 @@ function buildBuffer() {
 	} else if(this.id === 'calc') {
 		lastIn = Number(lastIn);
 		operate(operator);
-		let expression = `${previousIn} ${operator} ${lastIn} =`
-		displayExpression.textContent = expression;
+		displayExpression.textContent = `${previousIn} ${operator} ${lastIn} =`;
 		lastIn = operate(operator);
 		previousIn = '';
 		operator = '';
@@ -47,10 +46,10 @@ function operate(operator) {
 		case '-':
 			result = previousIn - lastIn;
 			break;
-		case '*':
+		case 'x':
 			result = previousIn * lastIn;
 			break;
-		case '/':
+		case '÷':
 			result = (previousIn / lastIn).toFixed(2);
 			break
 	}
@@ -62,4 +61,5 @@ function clear() {
 	previousIn = '';
 	operator = '';
 	lastIn = '';
+	result = '';
 }
