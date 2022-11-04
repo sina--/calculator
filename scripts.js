@@ -51,7 +51,10 @@ function operate(operator) {
 			break;
 		case '÷':
 			result = Math.round(((previousIn / lastIn) + Number.EPSILON) * 100) / 100;
-			break
+			break;
+		case '^':
+			result = previousIn ** lastIn;
+			break;
 	}
 	return result;
 }
