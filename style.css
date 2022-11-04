@@ -32,7 +32,7 @@ html, body {
 }
 
 .display:hover {
-	box-shadow: inset 0px 1px #000000;
+	box-shadow: inset 0px 1px #70757a;
 }
 
 #displayExpression {
