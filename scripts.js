@@ -50,7 +50,7 @@ function operate(operator) {
 			result = previousIn * lastIn;
 			break;
 		case '÷':
-			result = (previousIn / lastIn).toFixed(2);
+			result = Math.round(((previousIn / lastIn) + Number.EPSILON) * 100) / 100;
 			break
 	}
 	return result;
