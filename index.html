@@ -5,13 +5,19 @@
 	<title>Calculator</title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="icon" type="image/xicon" href="/images/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="calculator">
 		<div class="display" id="display">
-			<div id="previousIn">_</div>
-			<div id="op">_</div>
-			<div id="lastIn">_</div>
+			<div id="displayExpression"></div>
+			<div class="activeDisplay">
+				<div id="displayPrevious" color="red"></div>
+				<div id="displayOperator" color="green"></div>
+				<div id="displayLast" color="blue"></div>
+			</div>
 		</div>
 		<div class="keys" id="clear">c</div>
 		<div class="keys">d</div>
