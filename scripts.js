@@ -20,17 +20,21 @@ function buildBuffer() {
 		lastIn += this.textContent;
 		displayLast.textContent = lastIn;
 	} else if(this.id === 'operator') {
+		//if(operator === '') {
+				
 		operator = this.textContent;
-		previousIn = Number(lastIn);
-		lastIn = '';
-	} else if(this.id === 'calc') {
-		lastIn = Number(lastIn);
 		operate(operator);
-		displayExpression.textContent = `${previousIn} ${operator} ${lastIn} =`;
-		lastIn = operate(operator);
-		previousIn = '';
-		operator = '';
-	} else if(this.id === 'clear') {
+		//previousIn = Number(lastIn);
+		lastIn = '';
+	}
+	//else if(this.id === 'calc') {
+	//	lastIn = Number(lastIn);
+	//	operate(operator);
+	//	lastIn = operate(operator);
+	//	previousIn = '';
+	//	operator = '';
+	//} 
+	else if(this.id === 'clear') {
 		clear();
 	}
 	displayPrevious.textContent = previousIn;
@@ -39,6 +43,8 @@ function buildBuffer() {
 }
 
 function operate(operator) {
+	previousIn = Number(previousIn);
+	lastIn = Number(lastIn);
 	switch (operator) {
 		case '+':
 			result = previousIn + lastIn;
@@ -50,12 +56,19 @@ function operate(operator) {
 			result = previousIn * lastIn;
 			break;
 		case '÷':
-			result = Math.round(((previousIn / lastIn) + Number.EPSILON) * 100) / 100;
+			result = previousIn / lastIn;
 			break;
 		case '^':
 			result = previousIn ** lastIn;
 			break;
+		case '=':
+		//	return result;
+			break;
 	}
+	result = Math.round((result + Number.EPSILON) * 100) / 100;
+	displayExpression.textContent = `${previousIn} ${operator} ${lastIn} =`;
+	previousIn = result;
+	operator = '';
 	return result;
 }
 
