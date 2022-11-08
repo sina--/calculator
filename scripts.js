@@ -28,7 +28,7 @@ function checkBuffer() {
 	if(previousIn === '' ||
 		lastIn === '' ||
 		operator === '') {
-			bufferFull = false;
+		bufferFull = false;
 	} else {
 		bufferFull = true;
 	}
@@ -46,7 +46,6 @@ function buildBuffer() {
 	} else if(this.id === 'operator' && bufferFull) {
 		lastIn = Number(lastIn);
 		operate(operator);
-		console.log(result);
 		displayExpression.textContent = `${previousIn} ${operator} ${lastIn} =`;
 		previousIn = result;
 		operator = this.textContent;
