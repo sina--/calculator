@@ -1,5 +1,4 @@
-const numButtons = document.querySelectorAll('[id=digit]');
-const opButtons = document.querySelectorAll('[id=operator]');
+const buttons = document.querySelectorAll('[class=keys]');
 const displayPrevious = document.getElementById('displayPrevious');
 const displayOperator = document.getElementById('displayOperator');
 const displayLast = document.getElementById('displayLast');
@@ -9,19 +8,48 @@ let previousIn = '';
 let lastIn = '';
 let operator = '';
 let result = '';
+let bufferFull = false;
 
-numButtons.forEach(numButton => numButton.addEventListener('click', buildBuffer));
-opButtons.forEach(opButton => opButton.addEventListener('click', buildBuffer));
-document.getElementById('calc').addEventListener('click', buildBuffer);
-document.getElementById('clear').addEventListener('click', buildBuffer);
+buttons.forEach(button => button.addEventListener('click', buildBuffer));
+buttons[2].addEventListener('click', clear)
+
+function clear() {
+	previousIn = '';
+	lastIn = '';
+	operator = '';
+	result = '';
+	displayExpression.textContent = '';
+	displayPrevious.textContent = previousIn;
+	displayOperator.textContent = operator;
+	displayLast.textContent = lastIn;
+}
+
+function checkBuffer() {
+	if(previousIn === '' ||
+		lastIn === '' ||
+		operator === '') {
+			bufferFull = false;
+	} else {
+		bufferFull = true;
+	}
+}
 
 function buildBuffer() {
+	checkBuffer();
 	if(this.id === 'digit') {
 		lastIn += this.textContent;
 		displayLast.textContent = lastIn;
-	} else if(this.id === 'operator') {
+	} else if(this.id === 'operator' && operator === '') {
 		operator = this.textContent;
 		previousIn = Number(lastIn);
+		lastIn = '';
+	} else if(this.id === 'operator' && bufferFull) {
+		lastIn = Number(lastIn);
+		operate(operator);
+		console.log(result);
+		displayExpression.textContent = `${previousIn} ${operator} ${lastIn} =`;
+		previousIn = result;
+		operator = this.textContent;
 		lastIn = '';
 	} else if(this.id === 'calc') {
 		lastIn = Number(lastIn);
@@ -30,8 +58,6 @@ function buildBuffer() {
 		lastIn = operate(operator);
 		previousIn = '';
 		operator = '';
-	} else if(this.id === 'clear') {
-		clear();
 	}
 	displayPrevious.textContent = previousIn;
 	displayOperator.textContent = operator;
@@ -50,19 +76,12 @@ function operate(operator) {
 			result = previousIn * lastIn;
 			break;
 		case '÷':
-			result = Math.round(((previousIn / lastIn) + Number.EPSILON) * 100) / 100;
+			result = previousIn / lastIn;
 			break;
 		case '^':
 			result = previousIn ** lastIn;
 			break;
 	}
+	result = Math.round((result + Number.EPSILON) * 100) / 100;
 	return result;
-}
-
-function clear() {
-	displayExpression.textContent = '';
-	previousIn = '';
-	operator = '';
-	lastIn = '';
-	result = '';
 }
